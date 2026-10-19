@@ -1,0 +1,19 @@
+\set ON_ERROR_STOP on
+
+\i sql/00_schema.sql
+\i sql/01_procedures.sql
+\i sql/02_seed.sql
+
+-- These tables represent the current batch; the durable dimension and fact stay intact.
+TRUNCATE TABLE raw.customer_stage, raw.sales_stage;
+
+\copy raw.customer_stage (customer_id, full_name, email, segment, city, source_updated_at, profile) FROM 'data/customer_updates.csv' WITH (FORMAT csv, HEADER true)
+\copy raw.sales_stage (event_date, event_ts, sale_id, customer_id, product_id, quantity, unit_price, sale_payload) FROM 'data/sales.csv' WITH (FORMAT csv, HEADER true)
+
+CALL etl.load_customer_dimension();
+CALL etl.load_sales();
+
+ANALYZE dw.customer_dim;
+ANALYZE dw.fact_sales;
+
+\i sql/03_explain.sql

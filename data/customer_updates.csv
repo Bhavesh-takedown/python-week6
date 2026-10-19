@@ -1,0 +1,4 @@
+customer_id,full_name,email,segment,city,source_updated_at,profile
+C001,Alice Kim,alice.new@example.com,Gold,Bengaluru,2026-01-15T00:00:00Z,"{""loyalty_tier"": ""gold"", ""interests"": [""books"", ""travel""]}"
+C002,Bob Rao,bob@example.com,Silver,Pune,2026-01-16T00:00:00Z,"{""loyalty_tier"": ""silver"", ""interests"": [""music""]}"
+C003,Chen Das,chen@example.com,Gold,Hyderabad,2026-01-18T00:00:00Z,"{""loyalty_tier"": ""gold"", ""interests"": [""sports""]}"
